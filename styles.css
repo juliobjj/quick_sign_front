@@ -1,0 +1,60 @@
+/* Estilo personalizado para o box */
+.custom-box {
+  width: 80%; /* Largura do box */
+  max-width: 800px; /* Largura máxima */
+  margin: 50px auto; /* Centraliza o box na página */
+  padding: 20px; /* Espaçamento interno */
+  border: 1px solid #ddd; /* Borda */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.custom-box .btn-cadastrar {
+  float: right; /* Alinha o botão à direita */
+}
+
+.custom-box .input-pesquisar {
+  width: 100%; /* Largura do input */
+  margin-top: 10px; /* Margem superior */
+}
+
+.custom-box .table {
+  margin-top: 20px; /* Margem superior da tabela */
+}
+
+/* Estilo para o dropdown sem cor */
+.dropdown-toggle-custom {
+  background: none; /* Remove o fundo */
+  border: none; /* Remove a borda */
+  padding: 0; /* Remove o padding */
+}
+
+/* Ajuste das colunas da tabela */
+.custom-box .table th:nth-child(1),
+.custom-box .table td:nth-child(1) {
+  width: 10%; /* Largura da coluna ID */
+  text-align: center;
+}
+
+.custom-box .table th:nth-child(2),
+.custom-box .table td:nth-child(2) {
+  width: 35%; /* Largura da coluna Nome */
+}
+
+.custom-box .table th:nth-child(3),
+.custom-box .table td:nth-child(3) {
+  width: 30%; /* Largura da coluna Data de Criação */
+  text-align: center;
+}
+
+.custom-box .table th:nth-child(4),
+.custom-box .table td:nth-child(4) {
+  width: 20%; /* Largura da coluna Status */
+  text-align: center; /* Centraliza o conteúdo */
+}
+
+.custom-box .table th:nth-child(5),
+.custom-box .table td:nth-child(5) {
+  width: 5%; /* Largura da coluna Ações */
+  text-align: center; /* Centraliza o conteúdo */
+}
