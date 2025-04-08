@@ -165,6 +165,11 @@ document
 
     const cpfLimpo = cpf.replace(/\D/g, "");
 
+    if (cpfLimpo.length !== 11) {
+      alert("CPF inválido.");
+      return;
+    }
+
     fetch(`http://localhost:5000/assinatura/cadastrar`, {
       method: "POST",
       headers: {
