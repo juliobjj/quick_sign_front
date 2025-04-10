@@ -51,7 +51,7 @@ function atualizarTabela(arquivos) {
     const statusAssinatura = arquivo.status_assinatura
       ? "Assinado"
       : "Pendente";
-    const desabilitarAssinar = arquivo.status_assinatura ? "disabled" : "";
+    const desabilitarBotao = arquivo.status_assinatura ? "disabled" : "";
     const row = `
           <tr>
               <td>${arquivo.id}</td>
@@ -65,7 +65,7 @@ function atualizarTabela(arquivos) {
                       </button>
                       <ul class="dropdown-menu">
                           <li>
-                              <a class="dropdown-item" href="#" onclick="abrirModalEditar(${arquivo.id}, '${arquivo.nome_arquivo}')">
+                              <a class="dropdown-item ${desabilitarBotao}" href="#" onclick="abrirModalEditar(${arquivo.id}, '${arquivo.nome_arquivo}')">
                                   <i class="bi bi-pencil"></i> Editar
                               </a>
                           </li>
@@ -75,7 +75,7 @@ function atualizarTabela(arquivos) {
                               </a>
                           </li>
                           <li>
-                              <a class="dropdown-item ${desabilitarAssinar}" href="#" onclick="abrirModalAssinar(${arquivo.id})">
+                              <a class="dropdown-item ${desabilitarBotao}" href="#" onclick="abrirModalAssinar(${arquivo.id})">
                                   <i class="bi bi-file-earmark-text"></i> Assinar
                               </a>
                           </li>
@@ -94,9 +94,11 @@ function atualizarTabela(arquivos) {
 }
 
 // Função para abrir o modal de edição
-function abrirModalEditar(id, nome) {
+function abrirModalEditar(id, nome, arquivo) {
   document.getElementById("idArquivoEditar").value = id;
   document.getElementById("nomeArquivoEditar").value = nome;
+  document.getElementById("uploadArquivoEditar").files[0] = arquivo;
+
   new bootstrap.Modal(document.getElementById("modalEditar")).show();
 }
 
@@ -113,9 +115,9 @@ document
     const formData = new FormData();
     formData.append("nome_arquivo", novoNome);
     formData.append("pdf_data", arquivo);
-    formData.append("status_assinatura", "False");
+    formData.append("status_assinatura", false);
 
-    fetch(`http://localhost:5000/documento/editar?id_documento=${id}`, {
+    fetch(`http://localhost:5000/documento/editar?documento_id=${id}`, {
       method: "PUT",
       body: formData,
     })
@@ -127,7 +129,6 @@ document
       })
       .then((data) => {
         console.log("Arquivo editado:", data);
-        alert("Arquivo editado com sucesso!");
         listarArquivos();
       })
       .catch((error) => {
@@ -179,7 +180,7 @@ document
         id_documento: id,
         nome: nome,
         cpf: cpfLimpo,
-        status_assinatura: "True",
+        status_assinatura: true,
       }),
     })
       .then((response) => {
@@ -222,7 +223,6 @@ function removerArquivo(id) {
       })
       .then((data) => {
         console.log("Arquivo removido:", data);
-        alert("Arquivo removido com sucesso!");
         listarArquivos();
       })
       .catch((error) => {
